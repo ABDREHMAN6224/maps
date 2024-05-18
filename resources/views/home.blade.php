@@ -15,47 +15,56 @@
 
 </head>
 
-<body>
-    <div class="w-screen h-screen bg-gradient-to-br from-green-400 to-cyan-500">
-        <div class="flex justify-center">
-            <div class="w-1/2">
-                <h1 class="text-3xl font-bold text-center">My Maps</h1>
-                <p class="text-center">A simple web application to get the 5 closest cities based on the City Name or Latitude and Longitude given.</p>
-                <hr class="my-4">
+<body class="bg-gradient-to-br from-green-400 to-cyan-500 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-cyan-600">
+                My Maps
+            </h1>
+            <p class="mt-4 text-lg text-gray-600">
+                This is a simple web application that allows you to view the 5 closest cities to a selected city.
+                You can select a city from the dropdown or click on the map to view the 5 closest cities to the selected city.
+                The cities are displayed in a table below the map.
+            </p>
+        </header>
 
-                <!-- Cities Dropdown Selection -->
-                <div class="flex justify-center">
-                    <label for="city-select" class="w-1/4">Select City:</label>
-                    <select name="city-select" id="city-select" class="w-3/4 px-2 py-1 border border-gray-400 rounded">
-                        @foreach ($all_cities as $city)
-                        <option value="{{ $city->city }}">{{ $city->city }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <hr class="my-4">
-
-                <div id="map" style="height: 400px;">
-                </div>
-
-
-                <div class="mt-4" id="cities">
-                    <h2 class="text-2xl font-bold text-center">5 Closest Cities</h2>
-                    <table class="w-full mt-4">
-                        <thead>
-                            <tr>
-                                <th class="border border-gray-400 px-4 py-2">City</th>
-                                <th class="border border-gray-400 px-4 py-2">Country</th>
-                                <th class="border border-gray-400 px-4 py-2">Distance (KM)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
-
-                        </tbody>
-                    </table>
-                </div>
+        <!-- Cities Dropdown Selection -->
+        <div class="mb-10">
+            <label for="city-select" class="block text-lg font-medium text-gray-700 mb-2 text-center">Select City:</label>
+            <div class="flex justify-center">
+                <select name="city-select" id="city-select" class="w-1/2 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-cyan-500 focus:border-cyan-500">
+                    @foreach ($all_cities as $city)
+                    <option value="{{ $city->city }}">{{ $city->city }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
+
+        <div id="map" class="h-96 mb-10 bg-gray-200 rounded-lg shadow-inner">
+            <!-- Map will be rendered here -->
+        </div>
+
+        <div id="cities">
+            <h2 class="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-cyan-600">
+                5 Closest Cities
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border-collapse">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-green-500 to-cyan-600 text-white">
+                            <th class="border px-4 py-2">City</th>
+                            <th class="border px-4 py-2">Country</th>
+                            <th class="border px-4 py-2">Distance (KM)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 
         <!-- scripts -->
         <script>

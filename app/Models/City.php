@@ -25,5 +25,4 @@ class City extends Model
         'latitude' => 'float',
     ];
 
-    protected $geometry = ['loc'];
 }
